@@ -1,0 +1,13 @@
+vmtkcenterlines -ifile "C:/Users/Harujane/Desktop/20240324/surface with simulation reslut/CB.vtp" --pipe vmtkcenterlineattributes --pipe vmtkbranchextractor -ofile "C:/Users/Harujane/Desktop/20240324/surface with simulation reslut/CB_cl.vtp"
+
+vmtkbifurcationreferencesystems -ifile "C:/Users/Harujane/Desktop/20240324/surface with simulation reslut/CB_cl.vtp" -radiusarray MaximumInscribedSphereRadius -blankingarray Blanking -groupidsarray GroupIds -ofile "C:/Users/Harujane/Desktop/20240324/surface with simulation reslut/CB_cl_rs.vtp"
+
+vmtkbranchclipper -ifile "C:/Users/Harujane/Desktop/20240324/surface with simulation reslut/CB.vtp" -centerlinesfile "C:/Users/Harujane/Desktop/20240324/surface with simulation reslut/CB_cl.vtp" -groupidsarray GroupIds -radiusarray MaximumInscribedSphereRadius -blankingarray Blanking -ofile "C:/Users/Harujane/Desktop/20240324/surface with simulation reslut/CB_clipped.vtp"
+
+vmtkbranchmetrics -ifile "C:/Users/Harujane/Desktop/20240324/surface with simulation reslut/CB_clipped.vtp" -centerlinesfile "C:/Users/Harujane/Desktop/20240324/surface with simulation reslut/CB_cl.vtp" -abscissasarray Abscissas -normalsarray ParallelTransportNormals -groupidsarray GroupIds -centerlineidsarray CenterlineIds -tractidsarray TractIds -blankingarray Blanking -radiusarray MaximumInscribedSphereRadius -ofile "C:/Users/Harujane/Desktop/20240324/surface with simulation reslut/CB_clipped_metrics.vtp"
+
+
+vmtkbranchmapping -ifile "C:/Users/Harujane/Desktop/20240324/surface with simulation reslut/CB_clipped_metrics.vtp" -centerlinesfile "C:/Users/Harujane/Desktop/20240324/surface with simulation reslut/CB_cl.vtp" -referencesystemsfile "C:/Users/Harujane/Desktop/20240324/surface with simulation reslut/CB_cl_rs.vtp" -normalsarray ParallelTransportNormals -abscissasarray Abscissas -groupidsarray GroupIds -centerlineidsarray CenterlineIds -tractidsarray TractIds -referencesystemsnormalarray Normal -radiusarray MaximumInscribedSphereRadius -blankingarray Blanking -angularmetricarray AngularMetric -abscissametricarray AbscissaMetric -ofile "C:/Users/Harujane/Desktop/20240324/surface with simulation reslut/CB_clipped_mapping.vtp"
+
+
+vmtkbranchpatching -ifile "C:/Users/Harujane/Desktop/20240324/surface with simulation reslut/CB_clipped_mapping.vtp" -groupidsarray GroupIds -longitudinalmappingarray StretchedMapping -circularmappingarray AngularMetric -longitudinalpatchsize 0.6 -circularpatches 20 -ofile "C:/Users/Harujane/Desktop/20240324/surface with simulation reslut/CB_clipped_patching.vtp"-patcheddatafile "C:/Users/Harujane/Desktop/20240324/surface with simulation reslut/CB_clipped_patching.vti"
